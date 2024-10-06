@@ -36,7 +36,7 @@ jobs:
           cache-dependency-path: ${{ env.BUILD_PATH }}/pnpm-lock.yaml
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: corepack enable
 
       - name: Install dependencies
         run: pnpm install
