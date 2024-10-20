@@ -6,7 +6,11 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   base: '/lama-web',
   site: 'https://musosoft.github.io',
-
+  vite: {
+    define: {
+      'process.env': process.env,
+    },
+  },
   integrations: [
     tailwind(),
   ],
