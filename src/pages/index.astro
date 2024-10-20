@@ -141,9 +141,18 @@ const userAgent = Astro.request.headers.get('user-agent');
 	};
 
 	// Function to handle visibility
-	function showSection(sectionToShow) {
-		[shoutbox, rules, info, vip].forEach(section => section.classList.add('hidden'));
-		sectionToShow.classList.remove('hidden');
+	function showSection(sectionToShow: HTMLElement | null) {
+	// Hide all sections
+	[shoutbox, rules, info, vip].forEach(section => {
+		if (section) {
+		section.classList.add('hidden'); // Hide all sections by adding 'hidden'
+		}
+	});
+
+	// Show the selected section
+	if (sectionToShow) {
+		sectionToShow.classList.remove('hidden'); // Show the passed section
+	}
 	}
 
 	// Add event listeners for the buttons

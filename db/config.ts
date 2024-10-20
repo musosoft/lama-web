@@ -6,7 +6,7 @@ const Shoutbox = defineTable({
     id: column.number({ primaryKey: true }),
     player_name: column.text(),
     message: column.text(),
-    timestamp: column.date({ default: new Date() }),
+    timestamp: column.date(),
   },
 });
 
