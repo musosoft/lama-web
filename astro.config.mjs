@@ -8,8 +8,8 @@ export default defineConfig({
   site: 'https://musosoft.github.io',
   vite: {
     define: {
-      'process.env': process.env,
-    },
+      'process.env.SECRET': JSON.stringify(process.env.SECRET)
+    }
   },
   integrations: [
     tailwind(),
