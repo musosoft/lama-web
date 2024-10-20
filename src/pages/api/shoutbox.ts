@@ -1,13 +1,10 @@
-import type { APIRoute } from 'astro';
-import { db, Shoutbox } from 'astro:db';
+import { turso } from '../../turso';
 
-// GET request to retrieve all messages from the Shoutbox
-export const GET: APIRoute = async () => {
+export const GET = async () => {
   try {
-    // Fetch all rows from the Shoutbox table
-    const messages = await db.select().from(Shoutbox).all();
-    
-    return new Response(JSON.stringify(messages), {
+    const { rows } = await turso.execute('SELECT * FROM Shoutbox');  // Fetch all rows from the Shoutbox table
+    console.log("Data from database:", rows);  // Debugging output
+    return new Response(JSON.stringify(rows), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -19,16 +16,12 @@ export const GET: APIRoute = async () => {
   }
 };
 
-// POST request to add a new message to the Shoutbox
-export const POST: APIRoute = async ({ request }) => {
+export const POST = async ({ request }: { request: Request }) => {
   try {
     const { player_name, message } = await request.json();
-    
-    // Insert the new message into the Shoutbox table
-    await db.insert(Shoutbox).values({
-      player_name,
-      message,
-      timestamp: new Date(),
+    await turso.execute({
+      sql: `INSERT INTO Shoutbox (player_name, message, timestamp) VALUES (?, ?, ?)`,
+      args: [player_name, message, new Date().toISOString()],
     });
 
     return new Response(JSON.stringify({ success: true }), {

@@ -19,16 +19,18 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log("Fetched messages from DB:", data); // Debug output to log database data
       renderMessages(data);
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
   }
 
-  function renderMessages(messages: Array<{ player_name: string; message: string; timestamp: string }>) {
+  function renderMessages(messages: { player_name: string, message: string, timestamp: string }[]) {
     const shoutboxContainer = document.getElementById('shoutbox');
     if (shoutboxContainer) {  // Null check
       shoutboxContainer.innerHTML = '';  // Clear existing messages
+      console.log("Rendering messages:", messages); // Debug output to check rendering data
       messages.forEach((msg) => {
         const messageElement = document.createElement('div');
         messageElement.textContent = `${msg.player_name}: ${msg.message} (${new Date(msg.timestamp).toLocaleTimeString()})`;
@@ -39,21 +41,21 @@
 
   async function handleSubmit(event: Event) {
     event.preventDefault();
-    const messageInput = document.getElementById('messageInput') as HTMLInputElement | null;
-    if (messageInput) {  // Null check
+    const messageInput = document.getElementById('messageInput') as HTMLInputElement;
+    if (messageInput) {
       const newMessage = messageInput.value;
 
       try {
         const response = await fetch(`${baseUrl}api/shoutbox`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ player_name: 'Player1', message: newMessage }),  // Replace 'Player1' with dynamic data if needed
+          body: JSON.stringify({ player_name: 'Player1', message: newMessage }),
         });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        messageInput.value = '';  // Clear input field
-        fetchMessages();  // Refresh messages
+        messageInput.value = '';
+        fetchMessages();
       } catch (error) {
         console.error('Error submitting message:', error);
       }
