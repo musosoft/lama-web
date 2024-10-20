@@ -3,9 +3,21 @@ import { defineConfig } from 'astro/config';
 
 import tailwind from '@astrojs/tailwind';
 
+import db from '@astrojs/db';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  base: '/lama-web',
   site: 'https://musosoft.github.io',
-  base: 'lama-web',
+  output: 'server',
+  integrations: [
+    tailwind(),
+    db({
+      remote: true,
+      env: {
+        url: process.env.TURSO_DB_URL,
+        authToken: process.env.TURSO_DB_AUTH_TOKEN,
+      },
+    }),
+  ],
 });
