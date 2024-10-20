@@ -2,8 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../assets/hero.svg?raw';
 import Shoutbox from '../components/Shoutbox.astro';
-
-const userAgent = Astro.request.headers.get('user-agent');
 ---
 
 <Layout title="Welcome to LaMaTeam">
@@ -33,12 +31,12 @@ const userAgent = Astro.request.headers.get('user-agent');
 						</div>
 
 						<!-- Content Sections -->
-						<div id="shoutbox" class="space-y-4">
-							<Shoutbox />
-							<p>Vo vyvoji 🔨😊</p>
-							<p>{userAgent}</p>
+						<div id="shoutbox" class="space-y-4 hidden">
+							<!-- <Shoutbox /> -->
+							<!-- <p>Vo vyvoji 🔨😊</p> -->
+							<p id="userAgent"></p>
 						</div>
-						<div id="rules" class="space-y-4 hidden">
+						<div id="rules" class="space-y-4">
 							<h1 class="mb-4 font-bold tracking-tight text-4xl">Zákaz:</h1>
 							<!-- Rules Content -->
 							<span class="text-yellow-500">- T kemp na DE mapách déle jak 30 sekund - (SLAY)</span><br />
@@ -68,8 +66,8 @@ const userAgent = Astro.request.headers.get('user-agent');
 							  zabezpečuje FakaHeda.eu<br />Najdeš nás taky na discordu a na facebooku - hledej:
 							</span>
 							<span class="text-red-500"><a href="https://www.facebook.com/groups/437402000675912">LaMaTeAm.eu</a></span>
-						  </div>
-						  <div id="vip" class="space-y-4 hidden">
+						</div>
+						<div id="vip" class="space-y-4 hidden">
 							<h1 class="mb-4 font-bold tracking-tight text-4xl">Chceš se stát VIP?</h1>
 							<span class="text-yellow-500">Chceš nás sponzorovat a vždy se připojit, když je plný server? Podpoř nás:</span><br />
 							<span class="text-yellow-500">1 měsíc = 100 Kč</span><br />
@@ -160,4 +158,11 @@ const userAgent = Astro.request.headers.get('user-agent');
 	buttons.rulesBtn?.addEventListener('click', () => showSection(rules));
 	buttons.infoBtn?.addEventListener('click', () => showSection(info));
 	buttons.vipBtn?.addEventListener('click', () => showSection(vip));
+
+	document.addEventListener('DOMContentLoaded', () => {
+    	const userAgent = navigator.userAgent;
+    	const userAgentElement = document.createElement('p');
+    	userAgentElement.textContent = `User Agent: ${userAgent}`;
+    	document.getElementById('userAgent').appendChild(userAgentElement);
+  	});
 </script>
