@@ -159,10 +159,8 @@ import Hero from '../assets/hero.svg?raw';
 	buttons.infoBtn?.addEventListener('click', () => showSection(info));
 	buttons.vipBtn?.addEventListener('click', () => showSection(vip));
 
-	document.addEventListener('DOMContentLoaded', () => {
-    	const userAgent = navigator.userAgent;
-    	const userAgentElement = document.createElement('p');
-    	userAgentElement.textContent = `User Agent: ${userAgent}`;
-    	document.getElementById('userAgent').appendChild(userAgentElement);
-  	});
+	const userAgentElement = document.getElementById('userAgent');
+	if (userAgentElement) {
+		userAgentElement.textContent = `User Agent: ${navigator.userAgent}`;
+	}
 </script>
