@@ -5,9 +5,9 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/lama-web',
+  base: 'lama-web',
   site: 'https://musosoft.github.io',
-  output: 'server',
+  output: 'hybrid',
 
   integrations: [
     tailwind(),
