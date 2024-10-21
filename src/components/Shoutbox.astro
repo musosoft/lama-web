@@ -1,16 +1,18 @@
 ---
 // src/components/Shoutbox.astro
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<div id="shoutbox" class="space-y-4"></div>
+<div>
+  <div id='shoutbox' class='space-y-4'></div>
 
-<form id="shoutboxForm">
-  <input type="text" id="messageInput" placeholder="Enter your message" />
-  <button type="submit">Send</button>
-</form>
+  <form id='shoutboxForm'>
+    <input type='text' id='messageInput' placeholder='Enter your message' />
+    <button type='submit'>Send</button>
+  </form>
+</div>
 
-<script>
-  const baseUrl = '/';  // Adjust the base URL as needed
+<script is:inline define:vars={{ baseUrl }}>
 
   async function fetchMessages() {
     try {
@@ -19,18 +21,18 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("Fetched messages from DB:", data); // Debug output to log database data
+      console.log('Fetched messages from DB:', data);
       renderMessages(data);
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
   }
 
-  function renderMessages(messages: { player_name: string, message: string, timestamp: string }[]) {
+  function renderMessages(messages) {
     const shoutboxContainer = document.getElementById('shoutbox');
-    if (shoutboxContainer) {  // Null check
-      shoutboxContainer.innerHTML = '';  // Clear existing messages
-      console.log("Rendering messages:", messages); // Debug output to check rendering data
+    if (shoutboxContainer) {
+      shoutboxContainer.innerHTML = '';
+      console.log('Rendering messages:', messages);
       messages.forEach((msg) => {
         const messageElement = document.createElement('div');
         messageElement.textContent = `${msg.player_name}: ${msg.message} (${new Date(msg.timestamp).toLocaleTimeString()})`;
@@ -39,9 +41,9 @@
     }
   }
 
-  async function handleSubmit(event: Event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    const messageInput = document.getElementById('messageInput') as HTMLInputElement;
+    const messageInput = document.getElementById('messageInput');
     if (messageInput) {
       const newMessage = messageInput.value;
 
@@ -62,11 +64,12 @@
     }
   }
 
-  const shoutboxForm = document.getElementById('shoutboxForm');
-  if (shoutboxForm) {  // Null check
-    shoutboxForm.addEventListener('submit', handleSubmit);
-  }
-
-  // Fetch messages when the page loads
-  fetchMessages();
+  document.addEventListener('DOMContentLoaded', function () {
+    const shoutboxForm = document.getElementById('shoutboxForm');
+    if (shoutboxForm) {
+      shoutboxForm.addEventListener('submit', handleSubmit);
+    }
+    // Fetch messages when the page loads
+    fetchMessages();
+  });
 </script>

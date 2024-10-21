@@ -6,8 +6,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/lama-web',
-  site: 'https://musosoft.github.io',
+  site: 'https://lama-web.pages.dev',
 
   vite: {
     define: {

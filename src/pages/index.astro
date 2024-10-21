@@ -1,11 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../assets/hero.svg?raw';
-// import Shoutbox from '../components/Shoutbox.astro';
+import Shoutbox from '../components/Shoutbox.astro';
+
+const userAgent = typeof window !== 'undefined' ? navigator.userAgent : '';
+const isGame = userAgent.includes('Valve Client');
 ---
 
 <Layout title="Welcome to LaMaTeam">
-	<main class="group fixed inset-0 z-40 flex items-center justify-center bg-gray-900 bg-opacity-0 backdrop-blur-sm">
+	<main class=`group fixed inset-0 z-40 flex items-center justify-center bg-gray-900 ${isGame ? 'bg-opacity-0' : ''} backdrop-blur-sm`>
 		<div class="absolute inset-0 opacity-100 block group-hover:hidden box"></div>
 		<div class="absolute inset-0 z-0 flex items-center justify-center">
 			<Fragment set:html={Hero} />
@@ -32,9 +35,8 @@ import Hero from '../assets/hero.svg?raw';
 
 						<!-- Content Sections -->
 						<div id="shoutbox" class="space-y-4 hidden">
-							<!-- <Shoutbox /> -->
-							<!-- <p>Vo vyvoji 🔨😊</p> -->
-							<p id="userAgent"></p>
+							<Shoutbox />
+							<p>Vo vyvoji 🔨😊</p>
 						</div>
 						<div id="rules" class="space-y-4">
 							<h1 class="mb-4 font-bold tracking-tight text-4xl">Zákaz:</h1>
