@@ -7,162 +7,211 @@ const userAgent = typeof window !== 'undefined' ? navigator.userAgent : '';
 const isGame = userAgent.includes('Valve Client');
 ---
 
-<Layout title="Welcome to LaMaTeam">
-	<main class=`group fixed inset-0 z-40 flex items-center justify-center bg-gray-900 ${isGame ? 'bg-opacity-0' : ''} backdrop-blur-sm`>
-		<div class="absolute inset-0 opacity-100 block group-hover:hidden box"></div>
-		<div class="absolute inset-0 z-0 flex items-center justify-center">
-			<Fragment set:html={Hero} />
-		</div>
-		<div id="myBox" class="relative hidden group-hover:flex h-full mx-4 w-full max-w-3xl animate-fade-in-up p-8 items-center">
-			<div class="rounded-lg bg-gray-800 shadow-lg grow">
-				<div class="relative flex h-full w-full flex-col overflow-hidden rounded-lg">
-					<div class="relative z-10 flex h-full flex-col justify-center gap-8 p-8 text-center text-white">
-						<!-- Buttons Section -->
-						<div class="fixed top-1 left-0 right-0 max-w-4xl mx-auto grid w-full grid-cols-1 gap-4 sm:grid-cols-4">
-							<a id="shoutboxBtn" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" href="#">
-								Shoutbox
-							</a>
-							<a id="rulesBtn" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" href="#">
-								Pravidla
-							</a>
-							<a id="infoBtn" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" href="#">
-								Prikazy
-							</a>
-							<a id="vipBtn" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" href="#">
-								VIP
-							</a>
-						</div>
+<Layout title='Welcome to LaMaTeam'>
+  <main class=`group fixed inset-0 z-40 flex items-center justify-center bg-gray-900 ${isGame ? 'bg-opacity-0' : ''} backdrop-blur-sm`>
+    <div class='absolute inset-0 opacity-100 block group-hover:hidden box'></div>
+    <div class='absolute inset-0 z-0 flex items-center justify-center'>
+      <Fragment set:html={Hero} />
+    </div>
+    <div id='myBox' class='relative hidden group-hover:flex h-full mx-4 w-full max-w-3xl animate-fade-in-up p-8 items-center'>
+      <div class='rounded-lg bg-gray-800 shadow-lg grow'>
+        <div class='relative flex h-full w-full flex-col overflow-hidden rounded-lg'>
+          <div class='relative z-10 flex h-full flex-col justify-center gap-8 p-8 text-center text-white'>
+            <!-- Buttons Section -->
+            <div class='fixed top-1 left-0 right-0 max-w-4xl mx-auto grid w-full grid-cols-1 gap-4 sm:grid-cols-4'>
+              <a
+                id='shoutboxBtn'
+                class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                href='#'
+              >
+                Shoutbox
+              </a>
+              <a
+                id='rulesBtn'
+                class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                href='#'
+              >
+                Pravidla
+              </a>
+              <a
+                id='infoBtn'
+                class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                href='#'
+              >
+                Prikazy
+              </a>
+              <a
+                id='vipBtn'
+                class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                href='#'
+              >
+                VIP
+              </a>
+            </div>
 
-						<!-- Content Sections -->
-						<div id="shoutbox" class="space-y-4 hidden">
-							<Shoutbox />
-							<p>Vo vyvoji 🔨😊</p>
-						</div>
-						<div id="rules" class="space-y-4">
-							<h1 class="mb-4 font-bold tracking-tight text-4xl">Zákaz:</h1>
-							<!-- Rules Content -->
-							<span class="text-yellow-500">- T kemp na DE mapách déle jak 30 sekund - (SLAY)</span><br />
-							<span class="text-yellow-500">- SPAM (voice,chat) - (KICK/BAN)</span><br />
-							<span class="text-yellow-500">- Opětovné nakupování - (KICK/BAN)</span><br />
-							<span class="text-yellow-500">- Sprostá mluva, nadávky, urážky, rasismus bez nadsázky - (BAN)</span><br />
-							<span class="text-yellow-500">- kradení nicků, napodobování, vydávání se za admina (BAN)</span><br />
-							<span class="text-yellow-500">- používání cheatů (PERMABAN)</span><br />
-							<span class="text-yellow-500">- BHOP (SLAY/KICK/BAN)</span><br /><br />
-							<span class="text-red-500">!!! NEZNALOST PRAVIDEL NEOMLOUVÁ !!!</span><br /><br /><br />
-							<span class="text-red-500">!!! ÚPLNÁ PRAVIDLA NA LAMATEAM.EU !!!</span>
-						</div>
-						<div id="info" class="space-y-4 hidden">
-							<h1 class="mb-4 font-bold tracking-tight text-4xl">Užitečné informace:</h1>
-							<span class="text-yellow-500">Pro odstrčení od hráče napiš do chatu </span>
-							<span class="text-green-500">!nb</span>
-							<span class="text-yellow-500"><br />Pokud chceš ve hře zobrazit tohle okno, napiš </span>
-							<span class="text-green-500">!motd</span>
-							<span class="text-yellow-500"><br />Pokud máš připomínky, nápady na zlepšení, nebo chceš nahlásit podvádějícího či jinak hru znepříjemňujícího hráče, </span>
-							<a class="text-green-500" href="http://lamateam.eu/contact.php">napiš nám</a>
-							<span class="text-yellow-500"><br />- - - - - - - - - - -<br />Chceš nahrát demo na cheatera?<br />Otevři konzoli a napiš </span>
-							<span class="text-red-500">record název_dema<br /></span>
-							<span class="text-yellow-500">Když chceš nahrávání ukončit, napiš </span>
-							<span class="text-red-500">stop</span>
-							<span class="text-yellow-500"
-							  ><br />Nahrané demo najdeš v hlavním adresáři hry (/cstrike)<br />Pošli ho adminům!<br />- - - - - - - - - - -<br />Majitelem serveru crazy69 | Hosting
-							  zabezpečuje FakaHeda.eu<br />Najdeš nás taky na discordu a na facebooku - hledej:
-							</span>
-							<span class="text-red-500"><a href="https://www.facebook.com/groups/437402000675912">LaMaTeAm.eu</a></span>
-						</div>
-						<div id="vip" class="space-y-4 hidden">
-							<h1 class="mb-4 font-bold tracking-tight text-4xl">Chceš se stát VIP?</h1>
-							<span class="text-yellow-500">Chceš nás sponzorovat a vždy se připojit, když je plný server? Podpoř nás:</span><br />
-							<span class="text-yellow-500">1 měsíc = 100 Kč</span><br />
-							<span class="text-yellow-500">6 měsíců = 300 Kč</span><br />
-							<span class="text-yellow-500">12 mesíců = 500 Kč</span><br /><br />
-							<span class="text-yellow-500">Peníze můžete zasílat na číslo účtu: 1939775153/0800</span><br />
-							<span class="text-yellow-500">(IBAN CZ88 0800 0000 0019 3977 5153)</span><br />
-							<span class="text-yellow-500">Do informace pro příjemce uveď svůj nick, ať víme kdo poslal příspěvek.</span><br />
-							<span class="text-yellow-500">Podpořit provoz serveru můžeš i zcela nezjištně i libovolnou částkou. Napiš nám a určitě se dohodneme</span><br /><br />
-							<span class="text-yellow-500">PŘIPOJIT DO VIP SLOTU LZE V KONZOLE: </span>
-							<span class="text-red-500">connect 82.208.17.101:27516</span>
-						  </div>
+            <!-- Content Sections -->
+            <div id='shoutbox' class='space-y-4 hidden'>
+              <Shoutbox />
+              <p>Vo vyvoji 🔨😊</p>
+            </div>
+            <div id='rules' class='space-y-4'>
+              <h1 class='mb-4 font-bold tracking-tight text-4xl'>Zákaz:</h1>
+              <!-- Rules Content -->
+              <span class='text-yellow-500'>- T kemp na DE mapách déle jak 30 sekund - (SLAY)</span><br />
+              <span class='text-yellow-500'>- SPAM (voice,chat) - (KICK/BAN)</span><br />
+              <span class='text-yellow-500'>- Opětovné nakupování - (KICK/BAN)</span><br />
+              <span class='text-yellow-500'>- Sprostá mluva, nadávky, urážky, rasismus bez nadsázky - (BAN)</span><br />
+              <span class='text-yellow-500'>- kradení nicků, napodobování, vydávání se za admina (BAN)</span><br />
+              <span class='text-yellow-500'>- používání cheatů (PERMABAN)</span><br />
+              <span class='text-yellow-500'>- BHOP (SLAY/KICK/BAN)</span><br /><br />
+              <span class='text-red-500'>!!! NEZNALOST PRAVIDEL NEOMLOUVÁ !!!</span><br /><br /><br />
+              <span class='text-red-500'>!!! ÚPLNÁ PRAVIDLA NA LAMATEAM.EU !!!</span>
+            </div>
+            <div id='info' class='space-y-4 hidden'>
+              <h1 class='mb-4 font-bold tracking-tight text-4xl'>Užitečné informace:</h1>
+              <span class='text-yellow-500'>Pro odstrčení od hráče napiš do chatu </span>
+              <span class='text-green-500'>!nb</span>
+              <span class='text-yellow-500'><br />Pokud chceš ve hře zobrazit tohle okno, napiš </span>
+              <span class='text-green-500'>!motd</span>
+              <span class='text-yellow-500'><br />Pokud máš připomínky, nápady na zlepšení, nebo chceš nahlásit podvádějícího či jinak hru znepříjemňujícího hráče, </span>
+              <a class='text-green-500' href='http://lamateam.eu/contact.php'>napiš nám</a>
+              <span class='text-yellow-500'><br />- - - - - - - - - - -<br />Chceš nahrát demo na cheatera?<br />Otevři konzoli a napiš </span>
+              <span class='text-red-500'>record název_dema<br /></span>
+              <span class='text-yellow-500'>Když chceš nahrávání ukončit, napiš </span>
+              <span class='text-red-500'>stop</span>
+              <span class='text-yellow-500'
+                ><br />Nahrané demo najdeš v hlavním adresáři hry (/cstrike)<br />Pošli ho adminům!<br />- - - - - - - - - - -<br />Majitelem serveru crazy69 | Hosting zabezpečuje
+                FakaHeda.eu<br />Najdeš nás taky na discordu a na facebooku - hledej:
+              </span>
+              <span class='text-red-500'><a href='https://www.facebook.com/groups/437402000675912'>LaMaTeAm.eu</a></span>
+            </div>
+            <div id='vip' class='space-y-4 hidden'>
+              <h1 class='mb-4 font-bold tracking-tight text-4xl'>Chceš se stát VIP?</h1>
+              <span class='text-yellow-500'>Chceš nás sponzorovat a vždy se připojit, když je plný server? Podpoř nás:</span><br />
+              <span class='text-yellow-500'>1 měsíc = 100 Kč</span><br />
+              <span class='text-yellow-500'>6 měsíců = 300 Kč</span><br />
+              <span class='text-yellow-500'>12 mesíců = 500 Kč</span><br /><br />
+              <span class='text-yellow-500'>Peníze můžete zasílat na číslo účtu: 1939775153/0800</span><br />
+              <span class='text-yellow-500'>(IBAN CZ88 0800 0000 0019 3977 5153)</span><br />
+              <span class='text-yellow-500'>Do informace pro příjemce uveď svůj nick, ať víme kdo poslal příspěvek.</span><br />
+              <span class='text-yellow-500'>Podpořit provoz serveru můžeš i zcela nezjištně i libovolnou částkou. Napiš nám a určitě se dohodneme</span><br /><br />
+              <span class='text-yellow-500'>PŘIPOJIT DO VIP SLOTU LZE V KONZOLE: </span>
+              <span class='text-red-500'>connect 82.208.17.101:27516</span>
+            </div>
 
-						<!-- Footer Section -->
-						<div class="fixed bottom-1 left-0 right-0 max-w-4xl mx-auto grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
-							<a href="https://sourcebans.fakaheda.eu/sbans_336496/" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600">
-								Banlist
-							</a>
-							<a href="https://stats.lamateam.eu" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600">
-								Stats
-							</a>
-							<a href="http://lamateam.eu/contact.php" class="flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600">
-								Kontakt
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+            <!-- Footer Section -->
+            <div class='fixed bottom-1 left-0 right-0 max-w-4xl mx-auto grid w-full grid-cols-1 gap-4 sm:grid-cols-3'>
+              <a
+                href='https://sourcebans.fakaheda.eu/sbans_336496/'
+                class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600'
+              >
+                Banlist
+              </a>
+              <a href='https://stats.lamateam.eu' class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600'>
+                Stats
+              </a>
+              <a href='http://lamateam.eu/contact.php' class='flex items-center justify-center rounded-lg bg-gray-700 px-6 py-3 font-medium transition-colors hover:bg-indigo-600'>
+                Kontakt
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </Layout>
 
 <style>
-	/* Animations */
-	@keyframes mymove {
-		to { display: block; }
-		from { display: none; }
-	}
+  /* Animations */
+  @keyframes mymove {
+    to {
+      display: block;
+    }
+    from {
+      display: none;
+    }
+  }
 
-	@keyframes roundaction {
-		0%, 100% { left: 0; top: 0; transform: rotate(25deg); }
-		25% { left: 0; top: calc(100% - 75px); }
-		50% { top: calc(100% - 75px); left: calc(100% - 75px); }
-		75% { left: calc(100% - 75px); top: 0; }
-	}
+  @keyframes roundaction {
+    0% {
+      left: 0;
+      top: 0;
+      transform: rotate(135deg);
+    }
 
-	.box {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 75px;
-		height: 75px;
-		background-image: url(/assets/pointer.svg);
-		animation: roundaction 3.5s infinite forwards;
-	}
+    25% {
+      left: 0;
+      top: calc(100% - 75px);
+      transform: rotate(45deg);
+    }
+
+    50% {
+      top: calc(100% - 75px);
+      left: calc(100% - 75px);
+      transform: rotate(-45deg);
+    }
+
+    75% {
+      left: calc(100% - 75px);
+      top: 0;
+      transform: rotate(-135deg);
+    }
+
+    100% {
+      left: 0;
+      top: 0;
+      transform: rotate(135deg);
+    }
+  }
+
+  .box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 75px;
+    height: 75px;
+    background-image: url(/assets/pointer.svg);
+    background-repeat: no-repeat;
+    animation: roundaction 3.5s infinite forwards;
+  }
 </style>
 
 <script>
-	// Toggle visibility of sections
-	const shoutbox = document.getElementById('shoutbox');
-	const rules = document.getElementById('rules');
-	const info = document.getElementById('info');
-	const vip = document.getElementById('vip');
-	const buttons = {
-		shoutboxBtn: document.getElementById('shoutboxBtn'),
-		rulesBtn: document.getElementById('rulesBtn'),
-		infoBtn: document.getElementById('infoBtn'),
-		vipBtn: document.getElementById('vipBtn')
-	};
+  // Toggle visibility of sections
+  const shoutbox = document.getElementById('shoutbox');
+  const rules = document.getElementById('rules');
+  const info = document.getElementById('info');
+  const vip = document.getElementById('vip');
+  const buttons = {
+    shoutboxBtn: document.getElementById('shoutboxBtn'),
+    rulesBtn: document.getElementById('rulesBtn'),
+    infoBtn: document.getElementById('infoBtn'),
+    vipBtn: document.getElementById('vipBtn'),
+  };
 
-	// Function to handle visibility
-	function showSection(sectionToShow: HTMLElement | null) {
-	// Hide all sections
-		[shoutbox, rules, info, vip].forEach(section => {
-			if (section) {
-				section.classList.add('hidden'); // Hide all sections by adding 'hidden'
-			}
-		});
+  // Function to handle visibility
+  function showSection(sectionToShow: HTMLElement | null) {
+    // Hide all sections
+    [shoutbox, rules, info, vip].forEach((section) => {
+      if (section) {
+        section.classList.add('hidden'); // Hide all sections by adding 'hidden'
+      }
+    });
 
-		// Show the selected section
-		if (sectionToShow) {
-			sectionToShow.classList.remove('hidden'); // Show the passed section
-		}
-	}
+    // Show the selected section
+    if (sectionToShow) {
+      sectionToShow.classList.remove('hidden'); // Show the passed section
+    }
+  }
 
-	// Add event listeners for the buttons
-	buttons.shoutboxBtn?.addEventListener('click', () => showSection(shoutbox));
-	buttons.rulesBtn?.addEventListener('click', () => showSection(rules));
-	buttons.infoBtn?.addEventListener('click', () => showSection(info));
-	buttons.vipBtn?.addEventListener('click', () => showSection(vip));
+  // Add event listeners for the buttons
+  buttons.shoutboxBtn?.addEventListener('click', () => showSection(shoutbox));
+  buttons.rulesBtn?.addEventListener('click', () => showSection(rules));
+  buttons.infoBtn?.addEventListener('click', () => showSection(info));
+  buttons.vipBtn?.addEventListener('click', () => showSection(vip));
 
-	const userAgentElement = document.getElementById('userAgent');
-	if (userAgentElement) {
-		userAgentElement.textContent = `User Agent: ${navigator.userAgent}`;
-	}
+  const userAgentElement = document.getElementById('userAgent');
+  if (userAgentElement) {
+    userAgentElement.textContent = `User Agent: ${navigator.userAgent}`;
+  }
 </script>
