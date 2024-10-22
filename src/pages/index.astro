@@ -2,13 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../assets/hero.svg?raw';
 import Shoutbox from '../components/Shoutbox.astro';
-
-const userAgent = typeof window !== 'undefined' ? navigator.userAgent : '';
-const isGame = userAgent.includes('Valve Client');
 ---
 
 <Layout title='Welcome to LaMaTeam'>
-  <main class=`group fixed inset-0 z-40 flex items-center justify-center bg-gray-900 ${isGame ? 'bg-opacity-0' : ''} backdrop-blur-sm`>
+  <main id='main-content' class='group fixed inset-0 z-40 flex items-center justify-center bg-gray-900 backdrop-blur-sm'>
     <div class='absolute inset-0 opacity-100 block group-hover:hidden box'></div>
     <div class='absolute inset-0 z-0 flex items-center justify-center'>
       <Fragment set:html={Hero} />
@@ -63,7 +60,7 @@ const isGame = userAgent.includes('Valve Client');
               <span class='text-yellow-500'>- Sprostá mluva, nadávky, urážky, rasismus bez nadsázky - (BAN)</span><br />
               <span class='text-yellow-500'>- kradení nicků, napodobování, vydávání se za admina (BAN)</span><br />
               <span class='text-yellow-500'>- používání cheatů (PERMABAN)</span><br />
-              <span class='text-yellow-500'>- BHOP (SLAY/KICK/BAN)</span><br /><br />
+              <span class='text-yellow-500'>- BHOP / více jak dva skoky (SLAY/KICK/BAN)</span><br /><br />
               <span class='text-red-500'>!!! NEZNALOST PRAVIDEL NEOMLOUVÁ !!!</span><br /><br /><br />
               <span class='text-red-500'>!!! ÚPLNÁ PRAVIDLA NA LAMATEAM.EU !!!</span>
             </div>
@@ -177,41 +174,42 @@ const isGame = userAgent.includes('Valve Client');
 </style>
 
 <script>
-  // Toggle visibility of sections
-  const shoutbox = document.getElementById('shoutbox');
-  const rules = document.getElementById('rules');
-  const info = document.getElementById('info');
-  const vip = document.getElementById('vip');
-  const buttons = {
-    shoutboxBtn: document.getElementById('shoutboxBtn'),
-    rulesBtn: document.getElementById('rulesBtn'),
-    infoBtn: document.getElementById('infoBtn'),
-    vipBtn: document.getElementById('vipBtn'),
-  };
+  document.addEventListener('DOMContentLoaded', function () {
+    const userAgent = navigator.userAgent;
+    const isGame = userAgent.includes('Valve Client'); // In-game detection for Valve client
+    const mainContent = document.getElementById('main-content');
 
-  // Function to handle visibility
-  function showSection(sectionToShow: HTMLElement | null) {
-    // Hide all sections
-    [shoutbox, rules, info, vip].forEach((section) => {
-      if (section) {
-        section.classList.add('hidden'); // Hide all sections by adding 'hidden'
-      }
-    });
-
-    // Show the selected section
-    if (sectionToShow) {
-      sectionToShow.classList.remove('hidden'); // Show the passed section
+    // Apply or remove bg-opacity-0 based on userAgent detection
+    if (isGame && mainContent) {
+      mainContent.classList.add('bg-opacity-0');
     }
-  }
 
-  // Add event listeners for the buttons
-  buttons.shoutboxBtn?.addEventListener('click', () => showSection(shoutbox));
-  buttons.rulesBtn?.addEventListener('click', () => showSection(rules));
-  buttons.infoBtn?.addEventListener('click', () => showSection(info));
-  buttons.vipBtn?.addEventListener('click', () => showSection(vip));
+    // Toggle visibility of sections
+    const shoutbox = document.getElementById('shoutbox');
+    const rules = document.getElementById('rules');
+    const info = document.getElementById('info');
+    const vip = document.getElementById('vip');
+    const buttons = {
+      shoutboxBtn: document.getElementById('shoutboxBtn'),
+      rulesBtn: document.getElementById('rulesBtn'),
+      infoBtn: document.getElementById('infoBtn'),
+      vipBtn: document.getElementById('vipBtn'),
+    };
 
-  const userAgentElement = document.getElementById('userAgent');
-  if (userAgentElement) {
-    userAgentElement.textContent = `User Agent: ${navigator.userAgent}`;
-  }
+    function showSection(sectionToShow: HTMLElement | null) {
+      [shoutbox, rules, info, vip].forEach((section) => {
+        if (section) {
+          section.classList.add('hidden');
+        }
+      });
+      if (sectionToShow) {
+        sectionToShow.classList.remove('hidden');
+      }
+    }
+
+    buttons.shoutboxBtn?.addEventListener('click', () => showSection(shoutbox));
+    buttons.rulesBtn?.addEventListener('click', () => showSection(rules));
+    buttons.infoBtn?.addEventListener('click', () => showSection(info));
+    buttons.vipBtn?.addEventListener('click', () => showSection(vip));
+  });
 </script>
